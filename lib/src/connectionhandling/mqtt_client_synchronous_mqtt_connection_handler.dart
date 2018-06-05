@@ -10,7 +10,7 @@ part of mqtt_client;
 /// Connection handler that performs connections and disconnections to the hostname in a synchronous manner.
 class SynchronousMqttConnectionHandler extends MqttConnectionHandler {
   /// Max connection attempts
-  static const int maxConnectionAttempts = 3;
+  static const int maxConnectionAttempts = 100;
 
   /// Synchronously connect to the specific Mqtt Connection.
   Future internalConnect(String hostname, int port,
@@ -49,7 +49,7 @@ class SynchronousMqttConnectionHandler extends MqttConnectionHandler {
       MqttLogger.log(
           "SynchronousMqttConnectionHandler::internalConnect - pre sleep, state = $connectionState");
       // We're the sync connection handler so we need to wait for the brokers acknowledgement of the connections
-      await MqttUtilities.asyncSleep(5);
+      await MqttUtilities.asyncSleep(100);
       MqttLogger.log(
           "SynchronousMqttConnectionHandler::internalConnect - post sleep, state = $connectionState");
     } while (connectionState != ConnectionState.connected &&

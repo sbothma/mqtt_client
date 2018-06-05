@@ -11,8 +11,8 @@ part of mqtt_client;
 class MqttUtilities {
   /// Sleep function that allows asynchronous activity to continue.
   /// Time units are seconds
-  static Future asyncSleep(int seconds) {
-    return new Future.delayed(new Duration(seconds: seconds));
+  static Future asyncSleep(int milliseconds) {
+    return new Future.delayed(new Duration(milliseconds: milliseconds ));
   }
 
   /// Sleep function that block asynchronous activity.
